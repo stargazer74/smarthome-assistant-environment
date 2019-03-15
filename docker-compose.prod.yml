@@ -1,0 +1,15 @@
+version: '3.6'
+
+services: 
+  shoppinglist-service:
+    image: shoppinglist-service
+    container_name: shoppinglist_service
+    restart: unless-stopped
+    environment: 
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_smarthome_shoppinglist:3306/shoppinglist?autoReconnect=true&useSSL=false
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=update
+
+networks: 
+  default: 
+    external:
+      name: smarthome-assistant-environment_smarthome-assistant
