@@ -1,1 +1,32 @@
 version: '3.6'
+
+services:
+  phpmyadmin_shoppinglist:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_shoppinglist
+    restart: unless-stopped
+    environment: 
+      - PMA_PORT=3306
+      - PMA_HOST=mysql_shoppinglist
+    ports: 
+      - 28080:80
+    depends_on: 
+      - mysql_shoppinglist
+    networks: 
+      - smarthome
+
+  mysql_shoppinglist:
+    image: mariadb:latest
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=shoppinglist
+    container_name: mysql_shoppinglist
+    restart: unless-stopped
+    networks: 
+      - smarthome
+    ports:
+      - 3306:3306
+    volumes: 
+      - ./mysql/.docker/build-ressources/dump:/docker-entrypoint-initdb.d
+networks:
+  smarthome:
