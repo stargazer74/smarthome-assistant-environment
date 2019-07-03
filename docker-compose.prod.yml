@@ -12,6 +12,8 @@ services:
 
   apigateway:
     image: stargazer74/smarthome-apigateway:arm32-latest
+    ports:
+      - "7080:8080"
     container_name: apigateway
     restart: unless-stopped
     networks: 
