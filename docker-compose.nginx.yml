@@ -1,0 +1,12 @@
+version: '3.6'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports: 
+          - "7443:443"
+          - "7086:80"
+    container_name: nginx
+    restart: unless-stopped
+    volumes: 
+      - /home/storm/Development/smarthome/smarthome-gui/dist/smarthome-gui:/usr/share/nginx/html

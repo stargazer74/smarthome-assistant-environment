@@ -1,0 +1,48 @@
+version: '3.6'
+
+services:
+  apigateway:
+    image: stargazer74/smarthome-apigateway:latest
+    ports:
+      - "7080:8080"
+      - "7009:8009"
+      - "7000:8000"
+    container_name: apigateway
+    restart: unless-stopped
+    environment: 
+      - JPDA_ADDRESS=*:8000
+      - JPDA_TRANSPORT=dt_socket
+    networks: 
+      - default
+
+  phpmyadmin_shoppinglist:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_shoppinglist
+    restart: unless-stopped
+    environment: 
+      - PMA_PORT=3306
+      - PMA_HOST=mysql_shoppinglist
+    ports: 
+      - 28080:80
+    depends_on: 
+      - mysql_shoppinglist
+    networks: 
+      - default
+
+  mysql_shoppinglist:
+    image: mariadb:latest
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=shoppinglist
+    container_name: mysql_shoppinglist
+    restart: unless-stopped
+    networks: 
+      - default
+    ports:
+      - 3306:3306
+    volumes: 
+      - ./mysql/.docker/build-ressources/dump:/docker-entrypoint-initdb.d
+networks:
+      default:
+            external:
+                  name: smarthome-assistant-environment_smarthome

@@ -1,0 +1,25 @@
+version: '3.6'
+
+services:
+  smarthome-gui:
+    image: stargazer74/smarthome-gui:latest
+    ports:
+      - "80:80"
+    container_name: smarthome-gui
+    restart: unless-stopped
+    networks:
+      - default
+
+  apigateway:
+    image: stargazer74/smarthome-apigateway:latest
+    ports:
+      - "7080:8080"
+    container_name: apigateway
+    restart: unless-stopped
+    networks: 
+      - default
+
+networks:
+  default:
+    external:
+      name: smarthome-assistant-environment_smarthome
