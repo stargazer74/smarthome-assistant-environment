@@ -11,7 +11,7 @@ services:
       - default
 
   apigateway:
-    image: stargazer74/smarthome-apigateway:arm
+    image: stargazer74/smarthome-apigateway:arm32-latest
     ports:
       - "7080:8080"
     container_name: apigateway
