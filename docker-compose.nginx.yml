@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   nginx:
-    image: nginx:latest
+    build: ./nginx/.docker
     ports: 
           - "7443:443"
           - "7086:80"

@@ -1,0 +1,5 @@
+FROM nginx:latest
+
+LABEL author="Chris Wohlbrecht"
+
+COPY ./build-ressources/default.conf /etc/nginx/conf.d/
