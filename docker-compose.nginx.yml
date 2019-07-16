@@ -8,5 +8,10 @@ services:
           - "7086:80"
     container_name: nginx
     restart: unless-stopped
+    networks: 
+      - smarthome
     volumes: 
       - /home/storm/Development/smarthome/smarthome-gui/dist/smarthome-gui:/usr/share/nginx/html
+
+networks:
+  smarthome:
