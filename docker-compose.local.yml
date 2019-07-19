@@ -13,7 +13,7 @@ services:
       - JPDA_ADDRESS=*:8000
       - JPDA_TRANSPORT=dt_socket
     networks: 
-      - default
+      - smarthome
 
   phpmyadmin_shoppinglist:
     image: phpmyadmin/phpmyadmin:latest
@@ -27,7 +27,7 @@ services:
     depends_on: 
       - mysql_shoppinglist
     networks: 
-      - default
+      - smarthome
 
   mysql_shoppinglist:
     image: mariadb:latest
@@ -37,12 +37,10 @@ services:
     container_name: mysql_shoppinglist
     restart: unless-stopped
     networks: 
-      - default
+      - smarthome
     ports:
       - 3306:3306
     volumes: 
       - ./mysql/.docker/build-ressources/dump:/docker-entrypoint-initdb.d
 networks:
-      default:
-            external:
-                  name: smarthome-assistant-environment_smarthome
+  smarthome:
