@@ -10,6 +10,8 @@ services:
     restart: unless-stopped
     environment: 
       - JDK_JAVA_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - WEEKMENU_SERVICE_EXTERNAL_URL=menu-service
+      - WEEKMENU_SERVICE_EXTERNAL_PORT=8080
     networks: 
       - smarthome
 
@@ -22,7 +24,7 @@ services:
     restart: unless-stopped
     environment: 
       - JDK_JAVA_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_menu_service:3306/menu_service?autoReconnect=true&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://maria_smarthome:3306/menu_service?autoReconnect=true&useSSL=false
     networks: 
       - smarthome
 

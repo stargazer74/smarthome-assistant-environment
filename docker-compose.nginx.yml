@@ -11,7 +11,7 @@ services:
     networks: 
       - smarthome
     volumes: 
-      - /home/storm/Development/smarthome/smarthome-gui/dist/smarthome-gui:/usr/share/nginx/html
+      - /home/chris/Development/smarthome-gui/dist/smarthome-gui:/usr/share/nginx/html
 
 networks:
   smarthome:
