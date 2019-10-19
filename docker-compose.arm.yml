@@ -19,6 +19,18 @@ services:
     networks: 
       - default
 
+  menu-service:
+    image: stargazer74/menu-service:arm-32-latest
+    ports:
+      - "2080:8080"
+      - "2001:5005"
+    container_name: menu-service
+    restart: unless-stopped
+    environment: 
+      - SPRING_DATASOURCE_URL=jdbc:mysql://maria_smarthome:3306/menu_service?autoReconnect=true&useSSL=false
+    networks: 
+      - default
+
 networks:
   default:
     external:
