@@ -16,18 +16,23 @@ services:
       - "7080:8080"
     container_name: apigateway
     restart: unless-stopped
+    environment:
+      - WEEKMENU_SERVICE_EXTERNAL_URL=menu-service
+      - WEEKMENU_SERVICE_EXTERNAL_PORT=8080
     networks: 
       - default
 
   menu-service:
-    image: stargazer74/menu-service:arm-32-latest
+    image: stargazer74/menu-service:arm32-latest
     ports:
       - "2080:8080"
       - "2001:5005"
     container_name: menu-service
     restart: unless-stopped
     environment: 
-      - SPRING_DATASOURCE_URL=jdbc:mysql://maria_smarthome:3306/menu_service?autoReconnect=true&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://192.168.179.2:3307/menu_service?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Berlin
+      - SPRING_DATASOURCE_USERNAME=menuserviceuser
+      - SPRING_DATASOURCE_PASSWORD=MenuServiceUser#2019
     networks: 
       - default
 
